@@ -29,6 +29,7 @@ struct RecipeCard: View {
             }
             .aspectRatio(5/3, contentMode: .fill)
             .clipped()
+            .accessibilityLabel(recipe.dynamicThumbnailAlt)
             
             VStack(alignment: .leading, spacing: 8) {
                 // RECIPE Label
