@@ -1,40 +1,6 @@
-//
-//  ContentView.swift
-//  Coles
-//
-//  Created by Tim Kreger on 16/10/2025.
-//
-
 import SwiftUI
 
-struct ContentView: View {
-    // Determine the orientation using the GeometryReader
-    var body: some View {
-        GeometryReader { geometry in
-            if geometry.size.width > geometry.size.height {
-                // Landscape orientation
-                LandscapeView()
-            } else {
-                // Portrait orientation
-                PortraitView()
-            }
-        }
-    }
-}
-
-struct PortraitView: View {
-    var body: some View {
-        Text("Portrait View")
-            .font(.largeTitle)
-            .padding()
-            .background(Color.blue)
-            .foregroundColor(.white)
-            .cornerRadius(10)
-        
-    }
-}
-
-struct LandscapeView: View {
+struct RecipeServiceTestView: View {
     @StateObject private var loader = RecipeLoader()
     
     var body: some View {
@@ -86,11 +52,8 @@ struct LandscapeView: View {
     }
 }
 
-struct ContentView_Previews: PreviewProvider {
-    static var previews: some View {
-        ContentView()
-
-        ContentView()
-            .previewInterfaceOrientation(.landscapeLeft)
-    }
+#Preview {
+    RecipeServiceTestView()
 }
+
+

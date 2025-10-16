@@ -21,7 +21,7 @@ struct RecipeDetails: Codable {
     let amountNumber: Int
     let prepLabel: String
     let prepTime: String
-    let prepNote: String
+    let prepNote: String?
     let cookingLabel: String
     let cookingTime: String
     let cookTimeAsMinutes: Int
