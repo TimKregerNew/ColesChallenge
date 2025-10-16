@@ -29,9 +29,30 @@
 		8E7BB5A42EA05E6500BF9FA7 /* ColesUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ColesUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		8E7BB5C92EA06BF300BF9FA7 /* Exceptions for "Coles" folder in "ColesTests" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Models/Recipe.swift,
+			);
+			target = 8E7BB5992EA05E6500BF9FA7 /* ColesTests */;
+		};
+		8E89A6952EA0748300911C45 /* Exceptions for "Coles" folder in "Coles" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 8E7BB58C2EA05E6300BF9FA7 /* Coles */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		8E7BB58F2EA05E6300BF9FA7 /* Coles */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				8E89A6952EA0748300911C45 /* Exceptions for "Coles" folder in "Coles" target */,
+				8E7BB5C92EA06BF300BF9FA7 /* Exceptions for "Coles" folder in "ColesTests" target */,
+			);
 			path = Coles;
 			sourceTree = "<group>";
 		};
@@ -400,6 +421,7 @@
 				DEVELOPMENT_TEAM = 3K342K5J4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Coles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -428,6 +450,7 @@
 				DEVELOPMENT_TEAM = 3K342K5J4D;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Coles/Info.plist;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

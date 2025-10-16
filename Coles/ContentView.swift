@@ -30,6 +30,15 @@ struct PortraitView: View {
             .background(Color.blue)
             .foregroundColor(.white)
             .cornerRadius(10)
+            .onAppear {
+                print("PortraitView appeared")
+                for family in UIFont.familyNames {
+                    print("Family: \(family)")
+                    for name in UIFont.fontNames(forFamilyName: family) {
+                        print("Font: \(name)")
+                    }
+                }
+            }
     }
 }
 
