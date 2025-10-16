@@ -38,7 +38,7 @@ struct RecipeCard: View {
                 
                 // Recipe Title
                 Text(recipe.dynamicTitle)
-                    .font(.custom("Poppins-SemiBold", size: 14))
+                    .font(.custom("Poppins-SemiBold", size: 12))
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
             }
