@@ -73,6 +73,7 @@ struct RecipeDetailView: View {
                         .aspectRatio(5/3, contentMode: .fit)
                 }
                 .aspectRatio(5/3, contentMode: .fit)
+                .accessibilityLabel(recipe.dynamicThumbnailAlt)
                 
                 // Recipe Info Bar
                 RecipeInfoBar(recipeDetails: recipe.recipeDetails)
@@ -89,6 +90,7 @@ struct RecipeDetailView: View {
                                     .font(.system(size: 12))
                                     .foregroundColor(.gray)
                                     .padding(.top, 2)
+                                    .accessibilityHidden(true)
                                 
                                 Text(recipe.ingredients[index].ingredient)
                                     .font(.custom("Poppins-Regular", size: 14))

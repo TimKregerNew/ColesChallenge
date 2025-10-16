@@ -30,15 +30,18 @@ struct RemoteImage: View {
             switch loader.state {
             case .loading:
                 placeholder
+                    .accessibilityHidden(true)
             case .loaded(let image):
                 Image(uiImage: image)
                     .resizable()
             case .failed(let error):
                 if let errorView = errorView {
                     errorView(error)
+                        .accessibilityHidden(true)
                 } else {
                     Image(systemName: "exclamationmark.triangle")
                         .foregroundColor(.red)
+                        .accessibilityHidden(true)
                 }
             }
         }
