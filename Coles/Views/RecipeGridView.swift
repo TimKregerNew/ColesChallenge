@@ -12,7 +12,10 @@ struct RecipeGridView: View {
         ScrollView {
             LazyVGrid(columns: columns, spacing: 20) {
                 ForEach(recipes.indices, id: \.self) { index in
-                    RecipeCard(recipe: recipes[index])
+                    NavigationLink(destination: RecipeDetailView(recipe: recipes[index], allRecipes: recipes)) {
+                        RecipeCard(recipe: recipes[index])
+                    }
+                    .buttonStyle(PlainButtonStyle())
                 }
             }
             .padding(.horizontal, 16)

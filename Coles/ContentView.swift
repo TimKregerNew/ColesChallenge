@@ -26,40 +26,43 @@ struct PortraitView: View {
     @StateObject private var loader = RecipeLoader()
     
     var body: some View {
-        Group {
-            switch loader.state {
-            case .idle:
-                ProgressView("Loading recipe...")
-                
-            case .loading:
-                ProgressView("Loading recipe...")
-                
-            case .failed(let errorMessage):
-                VStack(spacing: 16) {
-                    Image(systemName: "exclamationmark.triangle")
-                        .font(.largeTitle)
-                        .foregroundColor(.red)
-                    Text(errorMessage)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.center)
-                        .padding(.horizontal)
-                    Button("Retry") {
-                        Task {
-                            await loader.retry()
+        NavigationView {
+            Group {
+                switch loader.state {
+                case .idle:
+                    ProgressView("Loading recipe...")
+                    
+                case .loading:
+                    ProgressView("Loading recipe...")
+                    
+                case .failed(let errorMessage):
+                    VStack(spacing: 16) {
+                        Image(systemName: "exclamationmark.triangle")
+                            .font(.largeTitle)
+                            .foregroundColor(.red)
+                        Text(errorMessage)
+                            .foregroundColor(.secondary)
+                            .multilineTextAlignment(.center)
+                            .padding(.horizontal)
+                        Button("Retry") {
+                            Task {
+                                await loader.retry()
+                            }
                         }
+                        .buttonStyle(.bordered)
                     }
-                    .buttonStyle(.bordered)
-                }
-                
-            case .loaded(let recipes):
-                if let firstRecipe = recipes.first {
-                    RecipeDetailView(recipe: firstRecipe)
-                } else {
-                    Text("No recipes available")
-                        .foregroundColor(.secondary)
+                    
+                case .loaded(let recipes):
+                    if let firstRecipe = recipes.first {
+                        RecipeDetailView(recipe: firstRecipe, allRecipes: recipes)
+                    } else {
+                        Text("No recipes available")
+                            .foregroundColor(.secondary)
+                    }
                 }
             }
         }
+        .tint(.black)
         .task {
             await loader.loadRecipes()
         }
@@ -112,6 +115,7 @@ struct LandscapeView: View {
             .navigationTitle("Recipes")
             .navigationBarTitleDisplayMode(.large)
         }
+        .tint(.black)
         .task {
             await loader.loadRecipes()
         }

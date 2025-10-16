@@ -2,7 +2,32 @@ import SwiftUI
 
 struct RecipeDetailView: View {
     let recipe: Recipe
+    let allRecipes: [Recipe]?
     private let baseURL = "https://www.coles.com.au"
+    
+    @State private var otherRecipes: [Recipe] = []
+    
+    private let columns = [
+        GridItem(.flexible(), spacing: 16, alignment: .top),
+        GridItem(.flexible(), spacing: 16, alignment: .top)
+    ]
+    
+    private func loadOtherRecipes() {
+        guard let allRecipes = allRecipes else { return }
+        
+        // Filter out current recipe and remove duplicates based on title
+        var seen = Set<String>()
+        let uniqueRecipes = allRecipes.filter { otherRecipe in
+            guard otherRecipe.dynamicTitle != recipe.dynamicTitle else { return false }
+            if seen.contains(otherRecipe.dynamicTitle) {
+                return false
+            }
+            seen.insert(otherRecipe.dynamicTitle)
+            return true
+        }
+        
+        otherRecipes = Array(uniqueRecipes.shuffled().prefix(4))
+    }
     
     var body: some View {
         ScrollView {
@@ -72,9 +97,29 @@ struct RecipeDetailView: View {
                         }
                     }
                 }
+                
+                // Other Recipes Section
+                if !otherRecipes.isEmpty {
+                    VStack(alignment: .leading, spacing: 16) {
+                        Text("More Recipes")
+                            .font(.custom("Poppins-SemiBold", size: 24))
+                        
+                        LazyVGrid(columns: columns, spacing: 20) {
+                            ForEach(otherRecipes.indices, id: \.self) { index in
+                                NavigationLink(destination: RecipeDetailView(recipe: otherRecipes[index], allRecipes: allRecipes)) {
+                                    RecipeCard(recipe: otherRecipes[index])
+                                }
+                                .buttonStyle(PlainButtonStyle())
+                            }
+                        }
+                    }
+                }
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 24)
+        }
+        .onAppear {
+            loadOtherRecipes()
         }
     }
 }
@@ -105,6 +150,6 @@ struct RecipeDetailView: View {
         ]
     )
     
-    return RecipeDetailView(recipe: sampleRecipe)
+    return RecipeDetailView(recipe: sampleRecipe, allRecipes: nil)
 }
 
