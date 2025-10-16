@@ -27,7 +27,8 @@ struct RecipeCard: View {
                         }
                     )
             }
-            .aspectRatio(5/3, contentMode: .fit)
+            .aspectRatio(5/3, contentMode: .fill)
+            .clipped()
             
             VStack(alignment: .leading, spacing: 8) {
                 // RECIPE Label
@@ -41,7 +42,9 @@ struct RecipeCard: View {
                     .font(.custom("Poppins-SemiBold", size: 12))
                     .lineLimit(2)
                     .multilineTextAlignment(.leading)
+                    .fixedSize(horizontal: false, vertical: true)
             }
+            .frame(height: 60, alignment: .top)
             .padding(.bottom, 12)
         }
         .background(Color(UIColor.systemBackground))

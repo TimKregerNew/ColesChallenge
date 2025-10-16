@@ -1,16 +1,28 @@
 import SwiftUI
 
 struct RecipeServiceTestView: View {
-    @State private var recipes: [Recipe] = []
-    @State private var isLoading: Bool = false
-    @State private var errorMessage: String?
+    @StateObject private var loader = RecipeLoader()
     
     var body: some View {
         NavigationView {
             Group {
-                if isLoading {
+                switch loader.state {
+                case .idle:
+                    VStack(spacing: 16) {
+                        Text("Ready to load recipes")
+                            .foregroundColor(.secondary)
+                        Button("Load Recipes") {
+                            Task {
+                                await loader.loadRecipes()
+                            }
+                        }
+                        .buttonStyle(.borderedProminent)
+                    }
+                    
+                case .loading:
                     ProgressView("Loading recipes...")
-                } else if let errorMessage = errorMessage {
+                    
+                case .failed(let errorMessage):
                     VStack(spacing: 16) {
                         Image(systemName: "exclamationmark.triangle")
                             .font(.largeTitle)
@@ -21,23 +33,13 @@ struct RecipeServiceTestView: View {
                             .padding(.horizontal)
                         Button("Retry") {
                             Task {
-                                await loadRecipes()
+                                await loader.retry()
                             }
                         }
                         .buttonStyle(.bordered)
                     }
-                } else if recipes.isEmpty {
-                    VStack(spacing: 16) {
-                        Text("No recipes loaded")
-                            .foregroundColor(.secondary)
-                        Button("Load Recipes") {
-                            Task {
-                                await loadRecipes()
-                            }
-                        }
-                        .buttonStyle(.borderedProminent)
-                    }
-                } else {
+                    
+                case .loaded(let recipes):
                     RecipeGridView(recipes: recipes)
                 }
             }
@@ -45,40 +47,7 @@ struct RecipeServiceTestView: View {
             .navigationBarTitleDisplayMode(.large)
         }
         .task {
-            await loadRecipes()
-        }
-    }
-    
-    private func loadRecipes() async {
-        isLoading = true
-        errorMessage = nil
-        
-        do {
-            let fetchedRecipes = try await RecipeService.shared.fetchRecipes()
-            await MainActor.run {
-                recipes = fetchedRecipes
-                isLoading = false
-            }
-        } catch RecipeServiceError.fileNotFound {
-            await MainActor.run {
-                errorMessage = "Recipe data file not found"
-                isLoading = false
-            }
-        } catch RecipeServiceError.decodingError(let error) {
-            await MainActor.run {
-                errorMessage = "Failed to decode recipes: \(error.localizedDescription)"
-                isLoading = false
-            }
-        } catch RecipeServiceError.networkError(let error) {
-            await MainActor.run {
-                errorMessage = "Network error: \(error.localizedDescription)"
-                isLoading = false
-            }
-        } catch {
-            await MainActor.run {
-                errorMessage = "Unexpected error: \(error.localizedDescription)"
-                isLoading = false
-            }
+            await loader.loadRecipes()
         }
     }
 }
@@ -86,4 +55,5 @@ struct RecipeServiceTestView: View {
 #Preview {
     RecipeServiceTestView()
 }
+
 

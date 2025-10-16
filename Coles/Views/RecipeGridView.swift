@@ -4,8 +4,8 @@ struct RecipeGridView: View {
     let recipes: [Recipe]
     
     private let columns = [
-        GridItem(.flexible(), spacing: 16),
-        GridItem(.flexible(), spacing: 16)
+        GridItem(.flexible(), spacing: 16, alignment: .top),
+        GridItem(.flexible(), spacing: 16, alignment: .top)
     ]
     
     var body: some View {
