@@ -57,6 +57,8 @@ xcodebuild test \
 
 Or use the GitHub Actions workflow which runs automatically on push.
 
+**Note:** Public GitHub runners can be slow and may occasionally timeout. Local testing is recommended for faster feedback.
+
 ## Technologies
 
 - SwiftUI
