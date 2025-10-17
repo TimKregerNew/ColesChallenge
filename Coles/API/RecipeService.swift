@@ -23,9 +23,6 @@ class RecipeService: RecipeServiceProtocol {
     init() {}  // Init for dependency injection
     private let useGraphQL = true
     
-    /// Fetches recipes from the mock API (using local JSON file)
-    /// - Returns: Array of Recipe objects
-    /// - Throws: RecipeServiceError if the operation fails
     func fetchRecipes() async throws -> [Recipe] {
         if useGraphQL {
             // Fetch from GraphQL server

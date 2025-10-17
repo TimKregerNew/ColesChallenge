@@ -17,12 +17,10 @@ protocol ImageServiceProtocol {
 }
 
 class ImageService: ImageServiceProtocol {
-    static let shared = ImageService()  // Singleton for convenience
-    
+    static let shared = ImageService()
     private let urlSession: URLSession
     private let cache = NSCache<NSString, UIImage>()
     
-    // Init for dependency injection
     init(urlSession: URLSession = .shared) {
         self.urlSession = urlSession
         // Configure cache limits
