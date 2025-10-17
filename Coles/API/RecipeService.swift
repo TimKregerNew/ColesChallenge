@@ -22,9 +22,6 @@ class RecipeService: RecipeServiceProtocol {
     
     init() {}  // Init for dependency injection
     
-    /// Fetches recipes from the mock API (using local JSON file)
-    /// - Returns: Array of Recipe objects
-    /// - Throws: RecipeServiceError if the operation fails
     func fetchRecipes() async throws -> [Recipe] {
         // Simulate network delay
         try await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
@@ -46,10 +43,6 @@ class RecipeService: RecipeServiceProtocol {
         }
     }
     
-    /// Fetches a single recipe by index
-    /// - Parameter index: The index of the recipe to fetch
-    /// - Returns: A Recipe object
-    /// - Throws: RecipeServiceError if the operation fails
     func fetchRecipe(at index: Int) async throws -> Recipe {
         let recipes = try await fetchRecipes()
         guard recipes.indices.contains(index) else {
