@@ -34,9 +34,7 @@ If you want to test with the GraphQL server:
 
 1. Start the server:
    ```bash
-   cd graphql-server
-   npm install
-   npm start
+   ./start-server.sh
    ```
 
 2. The server starts on `http://localhost:4000`
