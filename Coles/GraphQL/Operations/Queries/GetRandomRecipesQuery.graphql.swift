@@ -1,0 +1,109 @@
+// @generated
+// This file was automatically generated and should not be edited.
+
+@_exported import ApolloAPI
+
+extension ColesGraphQL {
+  class GetRandomRecipesQuery: GraphQLQuery {
+    static let operationName: String = "GetRandomRecipes"
+    static let operationDocument: ApolloAPI.OperationDocument = .init(
+      definition: .init(
+        #"query GetRandomRecipes($limit: Int = 4) { randomRecipes(limit: $limit) { __typename dynamicTitle dynamicDescription dynamicThumbnail dynamicThumbnailAlt recipeDetails { __typename amountLabel amountNumber prepLabel prepTime prepNote cookingLabel cookingTime cookTimeAsMinutes prepTimeAsMinutes } ingredients { __typename ingredient } } }"#
+      ))
+
+    public var limit: GraphQLNullable<Int>
+
+    public init(limit: GraphQLNullable<Int> = 4) {
+      self.limit = limit
+    }
+
+    public var __variables: Variables? { ["limit": limit] }
+
+    struct Data: ColesGraphQL.SelectionSet {
+      let __data: DataDict
+      init(_dataDict: DataDict) { __data = _dataDict }
+
+      static var __parentType: any ApolloAPI.ParentType { ColesGraphQL.Objects.Query }
+      static var __selections: [ApolloAPI.Selection] { [
+        .field("randomRecipes", [RandomRecipe].self, arguments: ["limit": .variable("limit")]),
+      ] }
+
+      var randomRecipes: [RandomRecipe] { __data["randomRecipes"] }
+
+      /// RandomRecipe
+      ///
+      /// Parent Type: `Recipe`
+      struct RandomRecipe: ColesGraphQL.SelectionSet {
+        let __data: DataDict
+        init(_dataDict: DataDict) { __data = _dataDict }
+
+        static var __parentType: any ApolloAPI.ParentType { ColesGraphQL.Objects.Recipe }
+        static var __selections: [ApolloAPI.Selection] { [
+          .field("__typename", String.self),
+          .field("dynamicTitle", String.self),
+          .field("dynamicDescription", String.self),
+          .field("dynamicThumbnail", String.self),
+          .field("dynamicThumbnailAlt", String.self),
+          .field("recipeDetails", RecipeDetails.self),
+          .field("ingredients", [Ingredient].self),
+        ] }
+
+        var dynamicTitle: String { __data["dynamicTitle"] }
+        var dynamicDescription: String { __data["dynamicDescription"] }
+        var dynamicThumbnail: String { __data["dynamicThumbnail"] }
+        var dynamicThumbnailAlt: String { __data["dynamicThumbnailAlt"] }
+        var recipeDetails: RecipeDetails { __data["recipeDetails"] }
+        var ingredients: [Ingredient] { __data["ingredients"] }
+
+        /// RandomRecipe.RecipeDetails
+        ///
+        /// Parent Type: `RecipeDetails`
+        struct RecipeDetails: ColesGraphQL.SelectionSet {
+          let __data: DataDict
+          init(_dataDict: DataDict) { __data = _dataDict }
+
+          static var __parentType: any ApolloAPI.ParentType { ColesGraphQL.Objects.RecipeDetails }
+          static var __selections: [ApolloAPI.Selection] { [
+            .field("__typename", String.self),
+            .field("amountLabel", String.self),
+            .field("amountNumber", Int.self),
+            .field("prepLabel", String.self),
+            .field("prepTime", String.self),
+            .field("prepNote", String?.self),
+            .field("cookingLabel", String.self),
+            .field("cookingTime", String.self),
+            .field("cookTimeAsMinutes", Int.self),
+            .field("prepTimeAsMinutes", Int.self),
+          ] }
+
+          var amountLabel: String { __data["amountLabel"] }
+          var amountNumber: Int { __data["amountNumber"] }
+          var prepLabel: String { __data["prepLabel"] }
+          var prepTime: String { __data["prepTime"] }
+          var prepNote: String? { __data["prepNote"] }
+          var cookingLabel: String { __data["cookingLabel"] }
+          var cookingTime: String { __data["cookingTime"] }
+          var cookTimeAsMinutes: Int { __data["cookTimeAsMinutes"] }
+          var prepTimeAsMinutes: Int { __data["prepTimeAsMinutes"] }
+        }
+
+        /// RandomRecipe.Ingredient
+        ///
+        /// Parent Type: `Ingredient`
+        struct Ingredient: ColesGraphQL.SelectionSet {
+          let __data: DataDict
+          init(_dataDict: DataDict) { __data = _dataDict }
+
+          static var __parentType: any ApolloAPI.ParentType { ColesGraphQL.Objects.Ingredient }
+          static var __selections: [ApolloAPI.Selection] { [
+            .field("__typename", String.self),
+            .field("ingredient", String.self),
+          ] }
+
+          var ingredient: String { __data["ingredient"] }
+        }
+      }
+    }
+  }
+
+}

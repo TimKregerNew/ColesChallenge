@@ -1,0 +1,23 @@
+query GetAllRecipes {
+  recipes {
+    dynamicTitle
+    dynamicDescription
+    dynamicThumbnail
+    dynamicThumbnailAlt
+    recipeDetails {
+      amountLabel
+      amountNumber
+      prepLabel
+      prepTime
+      prepNote
+      cookingLabel
+      cookingTime
+      cookTimeAsMinutes
+      prepTimeAsMinutes
+    }
+    ingredients {
+      ingredient
+    }
+  }
+}
+

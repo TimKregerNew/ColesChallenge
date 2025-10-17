@@ -1,0 +1,23 @@
+query GetRandomRecipes($limit: Int = 4) {
+  randomRecipes(limit: $limit) {
+    dynamicTitle
+    dynamicDescription
+    dynamicThumbnail
+    dynamicThumbnailAlt
+    recipeDetails {
+      amountLabel
+      amountNumber
+      prepLabel
+      prepTime
+      prepNote
+      cookingLabel
+      cookingTime
+      cookTimeAsMinutes
+      prepTimeAsMinutes
+    }
+    ingredients {
+      ingredient
+    }
+  }
+}
+

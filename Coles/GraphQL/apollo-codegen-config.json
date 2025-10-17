@@ -1,0 +1,28 @@
+{
+  "schemaName": "ColesGraphQL",
+  "input": {
+    "operationSearchPaths": [
+      "./**/*.graphql"
+    ],
+    "schemaSearchPaths": [
+      "./schema.graphqls"
+    ]
+  },
+  "output": {
+    "testMocks": {
+      "none": {}
+    },
+    "schemaTypes": {
+      "path": "./",
+      "moduleType": {
+        "embeddedInTarget": {
+          "name": "Coles"
+        }
+      }
+    },
+    "operations": {
+      "inSchemaModule": {}
+    }
+  }
+}
+
