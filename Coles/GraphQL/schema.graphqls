@@ -1,0 +1,36 @@
+type Recipe {
+  dynamicTitle: String!
+  dynamicDescription: String!
+  dynamicThumbnail: String!
+  dynamicThumbnailAlt: String!
+  recipeDetails: RecipeDetails!
+  ingredients: [Ingredient!]!
+}
+type RecipeDetails {
+  amountLabel: String!
+  amountNumber: Int!
+  prepLabel: String!
+  prepTime: String!
+  prepNote: String
+  cookingLabel: String!
+  cookingTime: String!
+  cookTimeAsMinutes: Int!
+  prepTimeAsMinutes: Int!
+}
+type Ingredient {
+  ingredient: String!
+}
+type Query {
+  recipes: [Recipe!]!
+  recipe(title: String!): Recipe
+  searchRecipes(query: String!): [Recipe!]!
+  randomRecipes(limit: Int = 4): [Recipe!]!
+}
+"Exposes a URL that specifies the behavior of this scalar."
+directive @specifiedBy(
+    "The URL that specifies the behavior of this scalar."
+    url: String!
+  ) on SCALAR
+"Indicates exactly one field must be supplied and this field must not be `null`."
+directive @oneOf on INPUT_OBJECT
+

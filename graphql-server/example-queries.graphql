@@ -1,0 +1,100 @@
+# Example GraphQL Queries for Coles Recipe Server
+# Copy and paste these into Apollo Studio at http://localhost:4000
+
+# ====================================
+# 1. GET ALL RECIPES
+# ====================================
+query GetAllRecipes {
+  recipes {
+    dynamicTitle
+    dynamicDescription
+    dynamicThumbnail
+    dynamicThumbnailAlt
+    recipeDetails {
+      amountLabel
+      amountNumber
+      prepLabel
+      prepTime
+      prepNote
+      cookingLabel
+      cookingTime
+      cookTimeAsMinutes
+      prepTimeAsMinutes
+    }
+    ingredients {
+      ingredient
+    }
+  }
+}
+
+# ====================================
+# 2. GET SINGLE RECIPE BY TITLE
+# ====================================
+query GetRecipeByTitle {
+  recipe(title: "Curtis Stone's tomato and bread salad with BBQ eggplant and capsicum") {
+    dynamicTitle
+    dynamicDescription
+    dynamicThumbnail
+    recipeDetails {
+      amountNumber
+      prepTime
+      cookingTime
+    }
+    ingredients {
+      ingredient
+    }
+  }
+}
+
+# ====================================
+# 3. SEARCH RECIPES
+# ====================================
+query SearchRecipes {
+  searchRecipes(query: "salad") {
+    dynamicTitle
+    dynamicDescription
+    dynamicThumbnail
+    recipeDetails {
+      amountNumber
+      prepTime
+    }
+  }
+}
+
+# ====================================
+# 4. GET RANDOM RECIPES (for "More Recipes" section)
+# ====================================
+query GetRandomRecipes {
+  randomRecipes(limit: 4) {
+    dynamicTitle
+    dynamicThumbnail
+    dynamicThumbnailAlt
+    recipeDetails {
+      amountNumber
+      prepTime
+      cookingTime
+    }
+  }
+}
+
+# ====================================
+# 5. MINIMAL QUERY - Just titles
+# ====================================
+query GetRecipeTitles {
+  recipes {
+    dynamicTitle
+  }
+}
+
+# ====================================
+# 6. SEARCH FOR SPECIFIC INGREDIENT
+# ====================================
+query SearchByIngredient {
+  searchRecipes(query: "lamb") {
+    dynamicTitle
+    ingredients {
+      ingredient
+    }
+  }
+}
+

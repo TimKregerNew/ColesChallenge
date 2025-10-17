@@ -21,8 +21,24 @@ class RecipeService: RecipeServiceProtocol {
     static let shared = RecipeService()  // Singleton for convenience
     
     init() {}  // Init for dependency injection
+    private let useGraphQL = true
     
     func fetchRecipes() async throws -> [Recipe] {
+        if useGraphQL {
+            // Fetch from GraphQL server
+            do {
+                return try await GraphQLRecipeAPI.shared.fetchRecipes()
+            } catch {
+                // Fallback to local JSON if GraphQL fails
+                print("⚠️ GraphQL fetch failed, falling back to local JSON: \(error)")
+                return try await fetchRecipesFromJSON()
+            }
+        } else {
+            return try await fetchRecipesFromJSON()
+        }
+    }
+    
+    private func fetchRecipesFromJSON() async throws -> [Recipe] {
         // Simulate network delay
         try await Task.sleep(nanoseconds: 500_000_000) // 0.5 seconds
         

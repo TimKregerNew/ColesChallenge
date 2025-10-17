@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		8E89A7172EA1C49200911C45 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 8E89A7162EA1C49200911C45 /* Apollo */; };
+		8E89A7192EA1C49200911C45 /* ApolloAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 8E89A7182EA1C49200911C45 /* ApolloAPI */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		8E7BB59B2EA05E6500BF9FA7 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -65,6 +70,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8E89A7192EA1C49200911C45 /* ApolloAPI in Frameworks */,
+				8E89A7172EA1C49200911C45 /* Apollo in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -115,6 +122,7 @@
 				8E7BB5892EA05E6300BF9FA7 /* Sources */,
 				8E7BB58A2EA05E6300BF9FA7 /* Frameworks */,
 				8E7BB58B2EA05E6300BF9FA7 /* Resources */,
+				8E89A7142EA1BCCE00911C45 /* Apollo Code Gen */,
 			);
 			buildRules = (
 			);
@@ -125,6 +133,8 @@
 			);
 			name = Coles;
 			packageProductDependencies = (
+				8E89A7162EA1C49200911C45 /* Apollo */,
+				8E89A7182EA1C49200911C45 /* ApolloAPI */,
 			);
 			productName = Coles;
 			productReference = 8E7BB58D2EA05E6300BF9FA7 /* Coles.app */;
@@ -208,6 +218,9 @@
 			);
 			mainGroup = 8E7BB5842EA05E6300BF9FA7;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				8E89A7152EA1C49200911C45 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 8E7BB58E2EA05E6300BF9FA7 /* Products */;
 			projectDirPath = "";
@@ -243,6 +256,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		8E89A7142EA1BCCE00911C45 /* Apollo Code Gen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Apollo Code Gen";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		8E7BB5892EA05E6300BF9FA7 /* Sources */ = {
@@ -571,6 +605,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		8E89A7152EA1C49200911C45 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
+			requirement = {
+				kind = exactVersion;
+				version = 1.25.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		8E89A7162EA1C49200911C45 /* Apollo */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E89A7152EA1C49200911C45 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = Apollo;
+		};
+		8E89A7182EA1C49200911C45 /* ApolloAPI */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 8E89A7152EA1C49200911C45 /* XCRemoteSwiftPackageReference "apollo-ios" */;
+			productName = ApolloAPI;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 8E7BB5852EA05E6300BF9FA7 /* Project object */;
 }
