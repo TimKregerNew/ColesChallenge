@@ -16,15 +16,15 @@ struct Recipe: Codable, Sendable {
     let ingredients: [Ingredient]
 }
 
-struct RecipeDetails: Codable {
-    let amountLabel: String
-    let amountNumber: Int
-    let prepLabel: String
-    let prepTime: String
-    let prepNote: String?
-    let cookingLabel: String
-    let cookingTime: String
-    let cookTimeAsMinutes: Int
+public struct RecipeDetails: Codable {
+    public let amountLabel: String
+    public let amountNumber: Int
+    public let prepLabel: String
+    public let prepTime: String
+    public let prepNote: String?
+    public let cookingLabel: String
+    public let cookingTime: String
+    public let cookTimeAsMinutes: Int
     let prepTimeAsMinutes: Int
     
     init(amountLabel: String, amountNumber: Int, prepLabel: String, prepTime: String, prepNote: String?, cookingLabel: String, cookingTime: String, cookTimeAsMinutes: Int, prepTimeAsMinutes: Int) {
@@ -40,7 +40,7 @@ struct RecipeDetails: Codable {
     }
 }
 
-struct Ingredient: Codable {
+public struct Ingredient: Codable {
     let ingredient: String
     
     init(ingredient: String) {
