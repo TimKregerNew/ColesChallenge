@@ -10,10 +10,17 @@ struct RecipesResponse: Codable {
     let recipes: [Recipe]
 }
 
-class RecipeService {
-    static let shared = RecipeService()
+// Protocol for testability and flexibility
+protocol RecipeServiceProtocol {
+    func fetchRecipes() async throws -> [Recipe]
+    func fetchRecipe(at index: Int) async throws -> Recipe
+    func searchRecipes(query: String) async throws -> [Recipe]
+}
+
+class RecipeService: RecipeServiceProtocol {
+    static let shared = RecipeService()  // Singleton for convenience
     
-    private init() {}
+    init() {}  // Init for dependency injection
     
     /// Fetches recipes from the mock API (using local JSON file)
     /// - Returns: Array of Recipe objects
