@@ -12,6 +12,14 @@ class RecipeLoader: ObservableObject {
     
     @Published var state: LoadState = .idle
     
+    // Service dependency - defaults to singleton, can be injected for testing
+    private let recipeService: RecipeServiceProtocol
+    
+    // Hybrid approach: default to singleton, allow injection
+    init(recipeService: RecipeServiceProtocol = RecipeService.shared) {
+        self.recipeService = recipeService
+    }
+    
     var recipes: [Recipe] {
         if case .loaded(let recipes) = state {
             return recipes
@@ -37,7 +45,7 @@ class RecipeLoader: ObservableObject {
         state = .loading
         
         do {
-            let fetchedRecipes = try await RecipeService.shared.fetchRecipes()
+            let fetchedRecipes = try await recipeService.fetchRecipes()
             state = .loaded(fetchedRecipes)
         } catch RecipeServiceError.fileNotFound {
             state = .failed("Recipe data file not found")

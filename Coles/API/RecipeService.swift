@@ -10,14 +10,22 @@ struct RecipesResponse: Codable {
     let recipes: [Recipe]
 }
 
-class RecipeService {
-    static let shared = RecipeService()
+// Protocol for testability and flexibility
+protocol RecipeServiceProtocol {
+    func fetchRecipes() async throws -> [Recipe]
+    func fetchRecipe(at index: Int) async throws -> Recipe
+    func searchRecipes(query: String) async throws -> [Recipe]
+}
+
+class RecipeService: RecipeServiceProtocol {
+    static let shared = RecipeService()  // Singleton for convenience
     
-    // Set to false to use local JSON fallback
+    init() {}  // Init for dependency injection
     private let useGraphQL = true
     
-    private init() {}
-    
+    /// Fetches recipes from the mock API (using local JSON file)
+    /// - Returns: Array of Recipe objects
+    /// - Throws: RecipeServiceError if the operation fails
     func fetchRecipes() async throws -> [Recipe] {
         if useGraphQL {
             // Fetch from GraphQL server
