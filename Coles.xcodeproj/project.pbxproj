@@ -30,13 +30,6 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
-		8E7BB5C92EA06BF300BF9FA7 /* Exceptions for "Coles" folder in "ColesTests" target */ = {
-			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
-			membershipExceptions = (
-				Models/Recipe.swift,
-			);
-			target = 8E7BB5992EA05E6500BF9FA7 /* ColesTests */;
-		};
 		8E89A6952EA0748300911C45 /* Exceptions for "Coles" folder in "Coles" target */ = {
 			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
 			membershipExceptions = (
@@ -51,7 +44,6 @@
 			isa = PBXFileSystemSynchronizedRootGroup;
 			exceptions = (
 				8E89A6952EA0748300911C45 /* Exceptions for "Coles" folder in "Coles" target */,
-				8E7BB5C92EA06BF300BF9FA7 /* Exceptions for "Coles" folder in "ColesTests" target */,
 			);
 			path = Coles;
 			sourceTree = "<group>";

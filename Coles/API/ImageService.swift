@@ -8,9 +8,16 @@ enum ImageServiceError: Error {
     case networkError(Error)
 }
 
-class ImageService {
+// Protocol for testability and flexibility
+protocol ImageServiceProtocol {
+    func fetchImageData(from urlString: String) async throws -> Data
+    func fetchImageData(from url: URL) async throws -> Data
+    func fetchImage(from urlString: String) async throws -> UIImage
+    func clearCache()
+}
+
+class ImageService: ImageServiceProtocol {
     static let shared = ImageService()
-    
     private let urlSession: URLSession
     private let cache = NSCache<NSString, UIImage>()
     

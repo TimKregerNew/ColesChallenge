@@ -65,6 +65,14 @@ class RemoteImageLoader: ObservableObject {
     @Published var state: LoadState = .loading
     private var currentTask: Task<Void, Never>?
     
+    // Service dependency - defaults to singleton, can be injected for testing
+    private let imageService: ImageServiceProtocol
+    
+    // Hybrid approach: default to singleton, allow injection
+    init(imageService: ImageServiceProtocol = ImageService.shared) {
+        self.imageService = imageService
+    }
+    
     func load(url: String) {
         // Cancel any existing task
         currentTask?.cancel()
@@ -75,7 +83,7 @@ class RemoteImageLoader: ObservableObject {
         // Create new task
         currentTask = Task {
             do {
-                let image = try await ImageService.shared.fetchImage(from: url)
+                let image = try await imageService.fetchImage(from: url)
                 
                 // Check if task was cancelled
                 guard !Task.isCancelled else { return }
