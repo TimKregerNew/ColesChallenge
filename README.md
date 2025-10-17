@@ -66,6 +66,12 @@ Or use the GitHub Actions workflow which runs automatically on push.
 - Apollo iOS (GraphQL client)
 - Node.js + Apollo Server (optional GraphQL backend)
 
+## Known Issues
+
+1. **Orientation Detection**: Layout doesn't respond to portrait upside-down orientation
+2. **Accessibility**: Minimal accessibility support implemented (basic labels only)
+3. **Typography**: Font styling may differ slightly from the design specification
+
 ---
 
 **Author:** Tim Kreger  
