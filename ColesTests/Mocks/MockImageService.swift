@@ -10,18 +10,18 @@ import UIKit
 @testable import Coles
 
 /// Mock implementation of ImageServiceProtocol for testing
-public class MockImageService: ImageServiceProtocol {
+class MockImageService: ImageServiceProtocol {
     // Configurable mock data
-    public var mockImage: UIImage?
-    public var mockImageData: Data?
-    public var shouldFail = false
-    public var errorToThrow: Error = ImageServiceError.networkError(
+    var mockImage: UIImage?
+    var mockImageData: Data?
+    var shouldFail = false
+    var errorToThrow: Error = ImageServiceError.networkError(
         NSError(domain: "MockImageService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Mock error"])
     )
     
-    public init() {}
+    init() {}
     
-    public func fetchImageData(from urlString: String) async throws -> Data {
+    func fetchImageData(from urlString: String) async throws -> Data {
         if shouldFail {
             throw errorToThrow
         }
@@ -34,7 +34,7 @@ public class MockImageService: ImageServiceProtocol {
         return createTestImageData()
     }
     
-    public func fetchImageData(from url: URL) async throws -> Data {
+    func fetchImageData(from url: URL) async throws -> Data {
         if shouldFail {
             throw errorToThrow
         }
@@ -46,7 +46,7 @@ public class MockImageService: ImageServiceProtocol {
         return createTestImageData()
     }
     
-    public func fetchImage(from urlString: String) async throws -> UIImage {
+    func fetchImage(from urlString: String) async throws -> UIImage {
         if shouldFail {
             throw errorToThrow
         }
@@ -59,7 +59,7 @@ public class MockImageService: ImageServiceProtocol {
         return createTestImage()
     }
     
-    public func clearCache() {
+    func clearCache() {
         // Mock implementation - does nothing
     }
     

@@ -9,24 +9,24 @@ import Foundation
 @testable import Coles
 
 /// Mock implementation of RecipeServiceProtocol for testing
-public class MockRecipeService: RecipeServiceProtocol {
+class MockRecipeService: RecipeServiceProtocol {
     // Configurable mock data
-    public var mockRecipes: [Recipe] = []
-    public var shouldFail = false
-    public var errorToThrow: Error = RecipeServiceError.networkError(
+    var mockRecipes: [Recipe] = []
+    var shouldFail = false
+    var errorToThrow: Error = RecipeServiceError.networkError(
         NSError(domain: "MockRecipeService", code: -1, userInfo: [NSLocalizedDescriptionKey: "Mock error"])
     )
     
-    public init() {}
+    init() {}
     
-    public func fetchRecipes() async throws -> [Recipe] {
+    func fetchRecipes() async throws -> [Recipe] {
         if shouldFail {
             throw errorToThrow
         }
         return mockRecipes
     }
     
-    public func fetchRecipe(at index: Int) async throws -> Recipe {
+    func fetchRecipe(at index: Int) async throws -> Recipe {
         if shouldFail {
             throw errorToThrow
         }
@@ -42,7 +42,7 @@ public class MockRecipeService: RecipeServiceProtocol {
         return mockRecipes[index]
     }
     
-    public func searchRecipes(query: String) async throws -> [Recipe] {
+    func searchRecipes(query: String) async throws -> [Recipe] {
         if shouldFail {
             throw errorToThrow
         }
